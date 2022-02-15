@@ -7,10 +7,10 @@ async def main():
             "html": "",
             "text": "",
             "subject": "",
-            "from_email": "info@fasttask.net",
+            "from_email": "info@yourdomain.com",
             "to": [
                 {
-                    "email":"info@fasttask.net",
+                    "email":"info@yourdomain.com",
                     "name":"",
                     "type":"to",
                 }
