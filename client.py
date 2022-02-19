@@ -1,7 +1,7 @@
 import json
 from typing import List
 
-from aiohttp import ClientResponse, request
+from aiohttp import ClientResponse, ClientSession, request
 
 
 class TransactionalAPIClient:
@@ -44,9 +44,9 @@ class TransactionalAPIClient:
 
         # API Key
         body["key"] = self.api_key
-
-        async with request("POST", url, data=json.dumps(body), headers=headers, timeout=self.timeout) as response:
-            return await self._handle_response(response)
+        async with ClientSession() as session:
+            async with session.post(url, data=json.dumps(body), headers=headers, timeout=self.timeout) as response:
+                return await self._handle_response(response)
 
     async def send_message(self, *, body={}):
         """
